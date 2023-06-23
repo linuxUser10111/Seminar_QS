@@ -1,17 +1,32 @@
 \begin{thebibliography}{1}
 
-\bibitem{arpachiDusseau18:osbook}
-Remzi~H. Arpaci-Dusseau and Arpaci-Dusseau~Andrea C.
-\newblock {\em Operating Systems: Three Easy Pieces}.
-\newblock Arpaci-Dusseau Books, LLC, 1.00 edition, 2015.
-\newblock \url{http://pages.cs.wisc.edu/~remzi/OSTEP/}.
+\bibitem{frozenqubits}
+Ramin Ayanzadeh, Narges Alavisamani, Poulami Das, and Moinuddin Qureshi.
+\newblock Frozenqubits: Boosting fidelity of qaoa by skipping hotspot nodes.
+\newblock In {\em Proceedings of the 28th ACM International Conference on
+  Architectural Support for Programming Languages and Operating Systems, Volume
+  2}, ASPLOS 2023, page 311–324, New York, NY, USA, 2023. Association for
+  Computing Machinery.
 
-\bibitem{waldspurger02}
-Carl~A. Waldspurger.
-\newblock Memory resource management in {VMware ESX} server.
-\newblock In {\em USENIX Symposium on Operating System Design and
-  Implementation (OSDI)}, pages 181--194, 2002.
-\newblock
-  \url{https://www.usenix.org/legacy/event/osdi02/tech/waldspurger/waldspurger.pdf}.
+\bibitem{barabasi}
+Albert-László Barabási and Réka Albert.
+\newblock Emergence of scaling in random networks.
+\newblock {\em Science}, 286(5439):509--512, 1999.
+
+\bibitem{qaoa}
+Edward Farhi, Jeffrey Goldstone, and Sam Gutmann.
+\newblock A quantum approximate optimization algorithm, 2014.
+
+\bibitem{Ising}
+Ernst Ising.
+\newblock Beitrag zur theorie des ferromagnetismus.
+\newblock {\em Zeitschrift f{\"u}r Physik}, 31(1):253--258, Feb 1925.
+
+\bibitem{RGCG}
+David~Bruce Wilson.
+\newblock Generating random spanning trees more quickly than the cover time.
+\newblock In {\em Proceedings of the Twenty-Eighth Annual ACM Symposium on
+  Theory of Computing}, STOC '96, page 296–303, New York, NY, USA, 1996.
+  Association for Computing Machinery.
 
 \end{thebibliography}
