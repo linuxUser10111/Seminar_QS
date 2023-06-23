@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex report"] 1687513738 "report.aux" "report.bbl" "report" 1687513741 0
+["bibtex report"] 1687517477 "report.aux" "report.bbl" "report" 1687517481 0
   "./report.bib" 1687513734 2971 87749a669b9718acddc3bcc325a8a49e ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "report.aux" 1687513741 8146 eb4b34cd3f7f459c0ac2d032342b0d72 "pdflatex"
+  "report.aux" 1687517480 7876 80eb9b77d606861bcc421c4bf84e1459 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1687513739 "/home/x/Desktop/seminar/Seminar_QS/report.tex" "report.pdf" "report" 1687513741 0
+["pdflatex"] 1687517477 "/home/x/Desktop/seminar/Seminar_QS/report.tex" "report.pdf" "report" 1687517481 0
   "/etc/texmf/web2c/texmf.cnf" 1666129474 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/x/Desktop/seminar/Seminar_QS/report.tex" 1687513732 35113 907b24402585067e2ea1a4fc943f43c8 ""
+  "/home/x/Desktop/seminar/Seminar_QS/report.tex" 1687517474 34581 28a810e59f4c65f4af00fbad3d53fdd4 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb8t.tfm" 1136768653 6628 34c39492c0adc454c1c199922bba8363 ""
@@ -254,11 +254,11 @@
   "Results/Results_CDepth.png" 1687513608 162516 d6f6a1b439b3c082d808c9b9758f0906 ""
   "Results/Results_CNOT.png" 1687513608 152930 44603412a0794f9337798ece67be2d11 ""
   "Results/Results_Compilation.png" 1687513608 181022 a9fe214442a9732a02ff1244c74c688f ""
-  "report.aux" 1687513741 8146 eb4b34cd3f7f459c0ac2d032342b0d72 "pdflatex"
-  "report.bbl" 1687513738 1225 11e717ba88118c661ddb65c48a32b02a "bibtex report"
+  "report.aux" 1687517480 7876 80eb9b77d606861bcc421c4bf84e1459 "pdflatex"
+  "report.bbl" 1687517477 1225 11e717ba88118c661ddb65c48a32b02a "bibtex report"
   "report.bib" 1687513734 2971 87749a669b9718acddc3bcc325a8a49e ""
-  "report.out" 1687513741 1753 a618c16c56cabd1acb8b1a08569e606f "pdflatex"
-  "report.tex" 1687513732 35113 907b24402585067e2ea1a4fc943f43c8 ""
+  "report.out" 1687517480 1796 124afb1d6c80c16d29f926c0c8d66528 "pdflatex"
+  "report.tex" 1687517474 34581 28a810e59f4c65f4af00fbad3d53fdd4 ""
   "report_style.sty" 1685374173 3795 62775b94e6f3aaf4bda0ce3e06335b5f ""
   (generated)
   "report.aux"

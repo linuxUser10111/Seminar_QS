@@ -128,40 +128,6 @@ doi = {10.1126/science.286.5439.509},
 URL = {https://www.science.org/doi/abs/10.1126/science.286.5439.509},
 eprint = {https://www.science.org/doi/pdf/10.1126/science.286.5439.509}
 }
-
-@misc{panchenko2014introduction,
-      title={Introduction to the SK model}, 
-      author={Dmitry Panchenko},
-      year={2014},
-      eprint={1412.0170},
-      archivePrefix={arXiv},
-      primaryClass={math.PR}
-}
-
-@article{Panchenko_2012,
-	doi = {10.1007/s10955-012-0586-7},
-  
-	url = {https://doi.org/10.1007%2Fs10955-012-0586-7},
-  
-	year = 2012,
-	month = {sep},
-  
-	publisher = {Springer Science and Business Media {LLC}
-},
-  
-	volume = {149},
-  
-	number = {2},
-  
-	pages = {362--383},
-  
-	author = {Dmitry Panchenko},
-  
-	title = {The Sherrington-Kirkpatrick Model: An Overview},
-  
-	journal = {Journal of Statistical Physics}
-}
-
 @inproceedings{RGCG,
 author = {Wilson, David Bruce},
 title = {Generating Random Spanning Trees More Quickly than the Cover Time},
@@ -202,44 +168,44 @@ Technical University of Munich
 %-------------------------------------------------------------------------------
 \begin{abstract}
 %-------------------------------------------------------------------------------
-FrozenQubits~\cite{frozenqubits} is a technique that boosts the fidelity of Quantum Approximate Optimization Algorithm (QAOA)~\cite{qaoa} by skipping hot-spot nodes. In FrozenQubits, a node with the highest degree of connectivity (hot-spot node) which corresponds to qubits with the highest number of CNOTs is frozen by substituting the value of each qubit with its two possibilities, -1 and +1.\\
-This partitions the state-space of the given problem into two smaller problems whose corresponding QAOA circuits are significantly improved. This article is supposed to give an overview of the aforementioned method, as well as analyze its usefulness in more general quantum circuits.
+FrozenQubits~\cite{frozenqubits} is a technique that boosts the fidelity of Quantum Approximate Optimization Algorithm (QAOA)~\cite{qaoa} by skipping hot-spot nodes. In FrozenQubits, a node with the highest degree of connectivity (hot-spot node) which corresponds to qubits with the highest number of CNOTs is frozen by substituting the value of each qubit with its two possibilities, -1 and +1. This partitions the state-space of the given problem into two smaller problems whose corresponding QAOA circuits are significantly improved. This article is intended to give an overview of the aforementioned method, as well as analyze its usefulness in more general quantum circuits. 
+% Because the method was intended for quantum circuits with highly connected qubits it does not offer the same advantage on sparse quantum circuits.
 \end{abstract}
 %-------------------------------------------------------------------------------
 \section{Introduction}
 %-------------------------------------------------------------------------------
-Near intermediate scale quantum Computers (NISQ Computers) pose an emerging field of research as the qubit count of state-of-the-art systems increases. Currently these qubits are still noisy, so larger quantum programs tend to get high error rates. Thus current development is focused on utilizing the current systems to the greatest extent. In this report we will present one of these methods and introduce the different applications of this method on various quantum circuits.
-% and our research building on this method.
+Near intermediate scale quantum computers (NISQ computers) pose an emerging field of research as the qubit count of state-of-the-art systems increases. Currently these qubits are still noisy, so larger quantum programs tend to get high error rates. Thus, current development is focused on utilizing present systems to the greatest extent. In this report we will present one of these methods called FrozenQubits and introduce the application of this method on sparse quantum circuits.
 %-------------------------------------------------------------------------------
 \section{FrozenQubits}
 %-------------------------------------------------------------------------------
-The method we will focus on in this report is called FrozenQubits~\cite{frozenqubits}. It provides a method to allow for the execution of quantum approximate optimization algorithm (QAOA) programs on NISQ computers and proposes to do so by trading off smaller circuit size for a greater number of circuits to be run.
+The method we will focus on in this report is called FrozenQubits. It provides a method to improve the execution of quantum approximate optimization algorithm (QAOA) programs on NISQ computers and proposes to do so by trading off smaller circuit size for a increased number of circuits needed to run to compute the result.
 %-------------------------------------------------------------------------------
 \subsection{Background}
 %-------------------------------------------------------------------------------
-This section will lay the groundwork for the specific optimization problem the original paper had regarded. It is known as \textit{Ising Hamiltonian}, which was first represented as the QAOA~\cite{qaoa} Equation (\ref{Hamiltonian}), where $z_i\in \{-1,+1\}$ and $h_i, J_{ij},\text{offset}\in\mathbb{R}$ are given by the Ising statistical mathematical model of ferromagnetism~\cite{Ising}.
+This section will lay the groundwork for the specific optimization problem the original paper had worked on. It is known as the \textit{Ising Hamiltonian}, which as a first step was represented as the QAOA Equation (\ref{Hamiltonian}), where $z_i\in \{-1,+1\}$ and $h_i, J_{ij},\text{offset}\in\mathbb{R}$ are given by the Ising statistical mathematical model of ferromagnetism~\cite{Ising}.
 \begin{equation}\label{Hamiltonian}
     H_Z:=C(z)=\sum^{N-1}_{i=0}h_iz_i+\sum^{N-1}_{i=0}\sum^{N-1}_{j=i+1}J_{ij}z_iz_j+\text{offset}
 \end{equation}
-Then the circuit parameters were tuned to find the optimum value for equation (\ref{Hamiltonian}), which is computationally expensive on classical computers, but QAOA promises speed-up by accelerating this step. FrozenQubits~\cite{frozenqubits} makes use of this acceleration as seen in \ref{results}.
+Then the circuit parameters were adjusted to find the optimum value for equation (\ref{Hamiltonian}), which is computationally expensive on classical computers, but QAOA promises speed-up by accelerating this step.
 %-------------------------------------------------------------------------------
 \subsection{Methodology}\label{methodology}
 %-------------------------------------------------------------------------------
-In this section we will explain, how FrozenQubits~\cite{frozenqubits} promises to speed up QAOA. The method makes use of the tendency for the degree of nodes in a connectivity graph to follow the power law. Similar to how there are few airports with flights going to most other airports and most airports only having flights to few other airports, most qubits in quantum programs are only connected to few others, and few qubits being connected to a lot of others. FrozenQubits~\cite{frozenqubits} makes use of these highly connected qubits by, as the name suggests, "freezing" them through substitution with $-1$ and $+1$. The $z_i$ are represented by individual qubits, so this results in equation (\ref{Hamiltonian}) being split into two separate equations, with $z_k$ representing the frozen qubit $k$. One with $z_k=+1$ (\ref{Hamiltonian_+1}) and one with $z_k=-1$ (\ref{Hamiltonian_-1}).
+In this section we will explain, how FrozenQubits promises to speed up QAOA. The method makes use of the tendency for the degree of nodes in a connectivity graph to follow the power law. The real world example given in the paper referenced how just a few airports have flights going to almost every other airport, while most airports are only connected to a few other airports. Similarly most qubits in quantum programs tend to be only connected to a small amount of other qubits, with a handful of qubits being highly interconnected. FrozenQubits makes use of these highly connected qubits by, as the name suggests, "freezing" them. This is implemented by substituting the qubits with $-1$ and $+1$ in the circuit. \\
+The $z_i$ in the Hamiltonian (\ref{Hamiltonian}) are represented by individual qubits, with $z_k$ representing the frozen qubit $k$. As a result the equation gets split into two parts: one with $z_k=+1$ (\ref{Hamiltonian_+1}) and one with $z_k=-1$ (\ref{Hamiltonian_-1}).
 \begin{equation}\label{Hamiltonian_+1}
     H_Z^{z_k=+1}=\sum_{\substack{i=0 \\ i \neq k}}^{N-1} h_i^{z_k=+1}z_i+\sum^{N-1}_{\substack{i=0 \\ i \neq k}}\sum^{N-1}_{\substack{j=i+1 \\ j \neq k}}J_{ij}z_iz_j+\text{offset}^{z_k=+1}
 \end{equation}
 \begin{equation}\label{Hamiltonian_-1}
     H_Z^{z_k=-1}=\sum_{\substack{i=0 \\ i \neq k}}^{N-1} h_i^{z_k=-1}z_i+\sum^{N-1}_{\substack{i=0 \\ i \neq k}}\sum^{N-1}_{\substack{j=i+1 \\ j \neq k}}J_{ij}z_iz_j+\text{offset}^{z_k=-1}
 \end{equation}
-As one can see, the most influential change to (\ref{Hamiltonian}), is that every term with $z_k$ was eliminated from the summations. Furthermore the $h_i$ had to be adjusted, to account for the effect of $z_k$ on their neighboring qubits. This can be more intuitively understood by looking at figure \ref{fig:graphs}.
+As one can see, the most influential change to the Hamiltonian (\ref{Hamiltonian}), is that every term with $z_k$ was eliminated from the summations. Furthermore the $h_i$ had to be adjusted, to account for the effect of $z_k$ on its neighboring nodes. This can be more intuitively understood by looking at figure \ref{fig:graphs}.
 \begin{figure}[H]
 \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,thick,main node/.style={circle,draw,font=\sffamily\small\bfseries,inner sep=0.05cm}]
 % nodes
   \node[main node] (0) [label=above:{$h_0=0$}] {$z_0$};
-  \node[main node] (3) [label=below:{0}] [below = 0.9cm of 0] {$z_3$};
-  \node[main node] (1) [label=below:{0}] [below left = 0.6cm and 0.8cm of 3] {$z_1$};
-  \node[main node] (2) [label=below:{0}] [below right = 0.6cm and 0.8cm of 3] {$z_2$};
+  \node[main node] (3) [label=below:{0}] [below = 0.8cm of 0] {$z_3$};
+  \node[main node] (1) [label=below:{0}] [below left = 0.5cm and 0.8cm of 3] {$z_1$};
+  \node[main node] (2) [label=below:{0}] [below right = 0.5cm and 0.8cm of 3] {$z_2$};
   %edges
   \path[every node/.style={font=\sffamily\footnotesize}]
     (0) edge node [above left] {$J_{0,1}=+1$} (1)
@@ -256,47 +222,44 @@ main node/.style={circle,draw,font=\sffamily\small\bfseries,inner sep=0.05cm},
 gray node/.style={circle,draw,dashed,fill={black!20!white},font=\sffamily\small\bfseries,inner sep=0cm}]
 % nodes
   \node[main node] (0) [label=above:{$h_0^{z_k=+1}=+1$}] {$z_0$};
-  \node[gray node] (3) [label=below:{$0$}] [below = 0.9cm of 0] {$+1$};
-  \node[main node] (1) [label=below:{$-1$}] [below left = 0.6cm and 0.8cm of 3] {$z_1$};
-  \node[main node] (2) [label=below:{$+1$}] [below right = 0.6cm and 0.8cm of 3] {$z_2$};
+  \node[gray node] (3) [label=below:{$0$}] [below = 0.8cm of 0] {$+1$};
+  \node[main node] (1) [label=below:{$-1$}] [below left = 0.5cm and 0.8cm of 3] {$z_1$};
+  \node[main node] (2) [label=below:{$+1$}] [below right = 0.5cm and 0.8cm of 3] {$z_2$};
   %edges
   \path[every node/.style={font=\sffamily\footnotesize}]
     (0) edge node [above left] {$+1$} (1)
     (0) edge node [right] {$-1$} (2)
     (1) edge node [below] {$+1$} (2);
 \end{tikzpicture}
-\caption{\label{fig:graphs}"Freezing" of node $z_3$ by substitution with $+1$ and resulting circuit graph with altered topology and $h_i$.}
+\caption{\label{fig:graphs}Depiction of substitution of node $z_3$ with $+1$ and resulting circuit graph with altered topology and $h_i$.}
 \end{figure}
-Each of these resulting equations, where has been $z_k$ substituted now represent a sub-problem of the original problem (\ref{Hamiltonian}). Overall the number of operations in each of these equation got reduced, but the number of equations doubled. Thus the number of CNOTs and the quantum circuit size got reduced, however now both of these equations are required to be evaluated separately and the results combined. Therefore FrozenQubits~\cite{frozenqubits} creates a trade-off between circuit size and the number of circuits needed to run to solve the entire equation.\\
-By applying the method multiple times, thus "freezing" further qubits, the resulting circuit size can be further reduced, however this leads to a doubling of the number of circuits that are generated each time the method is applied. So by freezing $m$ qubits $2^m$ equations are created. The problem graphs for QAOA usually only have very few nodes with a high degree of connectivity, which is why the paper usually chose $m=1$ or $m=2$.
+Each of these resulting equations, where $z_k$ has been substituted, now represent a sub-problem of the original problem (\ref{Hamiltonian}). Overall the size of each graph got reduced, but the number of graphs doubled. Thus, the quantum circuit size got reduced along with the number of CNOTs, however now both of these equations have to be computed separately and in the end the results need to be recombined. Therefore FrozenQubits creates a trade-off between circuit size and the number of circuits required to be computed.\\
+By applying the method multiple times, thus "freezing" further qubits, the resulting circuit size can be further reduced, however this leads to a doubling of the number of graphs each time the method is applied. So by freezing $m$ qubits $2^m$ equations are created. The problem graphs for QAOA usually only have very few nodes with a high degree of connectivity, which is why the paper usually chose $m=1$ or $m=2$.
 %-------------------------------------------------------------------------------
 \subsection{Overhead}\label{overhead}
 %-------------------------------------------------------------------------------
-Freezing $m$ qubits will result in $2^m$ sub-problem, this in turn will increase the overhead due to several reasons, one of them being that each sub-problem will have to be compiled for execution on a quantum computer, which in turn will add an exponential compilation overhead. Another reason is each sub-problem has to be computed separately and its output has to be concluded with other sub-problems to find the solution to the main problem.
+As we have shown in the previous paragraph freezing $m$ qubits will result in $2^m$ sub-problem. This will increase the overhead due to several reasons, one of them being that each sub-graph will have to be compiled for execution on a quantum computer, which  leads to an exponential compilation overhead. Another reason is each sub-problem has to be computed separately and its output has to be combined with all other sub-problems to find the solution to the optimization problem.
 %-------------------------------------------------------------------------------
 \subsubsection{Compilation Cost}\label{cost}
-By freezing $m$ qubits we generated $2^m$ sub-circuits. However, we only need to compile one circuit, because these circuits only differ in the angles of their rotation gates. This is due to the fact that, the Hamiltonian of each sub-problem only varies in the coefficients and offset values, thus only adjusting the first compiled circuit to fit all other sub-circuits is needed.
+Due to the fact that the Hamiltonian of each sub-problem only varies in the coefficients and offset values FrozenQubits reduces its compilation overhead by only having to compile one circuit and adjusting this circuit to fit the other sub-problems. Therefore all sub-circuits for a specific problem only differ in the angles of their rotation gates. Thus, adjusting the first compiled circuit to fit all other sub-circuits is enough.
 %-------------------------------------------------------------------------------
 \subsubsection{Trimming Sub-circuits}
 As we have seen in section \ref{methodology}, when we freeze a qubit, two sub-circuits will be created as a result by substituting the two possibilities $\{-1, +1\}$ in the Hamiltonian equation (\ref{Hamiltonian}).\\
-When all linear coefficients in the equation are set to zero, the sign of $J_{ij}$ depends solely on the value of the multiplication of $z_i$ and $z_j$. By substituting these values we get the following equation:
-\begin{equation}
-    H_Z := C(z) = \sum^{N-1}_{i=0}\sum^{N-1}_{j=i+1}\smash{{}^+_-}J_{ij}
-\end{equation}
-From the equation above we can deduce that the state-space of all Hamiltonian with zero linear coefficients are symmetric, so that $C(z) = C(-z)$.
+When all linear coefficients $h_i$ in the equation are set to zero, the sign of $J_{ij}$ depends solely on the value of the multiplication of $z_i$ and $z_j$. By substituting these values we get $C(z) = \sum^{N-1}_{i=0}\sum^{N-1}_{j=i+1}\smash{{}^+_-}J_{ij}$.
+From this above we can deduce that the state-space of all Hamiltonian with zero linear coefficients are symmetric, so that $C(z) = C(-z)$. This is also used to further speed up computation of the problem.
 %-------------------------------------------------------------------------------
 \subsection{Results}\label{results}
 %-------------------------------------------------------------------------------
-In this section we will discuss the impact of FrozenQubits~\cite{frozenqubits} on the performance of QAOA and more general power-law graphs. \\
-In figure~(\ref{fig:cnots}) the researchers present the results of their method on Barabasi-Albert graphs~\cite{barabasi}, which are randomly generated power-law graphs, in order to determine its effectiveness. As can be seen in sub-figure (\ref{fig:cnots:a}), FrozenQubits successfully reduces the number of CNOTs in the resulting quantum circuit with one qubits being frozen ($m=1)$ compared to the original circuit. This reduction continues with one more frozen qubit ($m=2$). In sub-figure (\ref{fig:cnots:b}) a similar trend was observed, where increasing the number of frozen qubits directly correlates to a lower circuit depth, compared to the original circuit the method was used on.
+In this section we will discuss the impact of FrozenQubits on the performance of power-law graphs.\\
+In figure~(\ref{fig:cnots}) the researchers present the results of their method on Barabasi-Albert graphs~\cite{barabasi}, which are a type of randomly generated power-law graphs, in order to determine its effectiveness. As can be seen in sub-figure (\ref{fig:cnots:a}), FrozenQubits successfully reduces the number of CNOTs in the resulting quantum circuit with one qubits being frozen ($m=1)$ compared to the original circuit. This reduction continues with one more frozen qubit ($m=2$). In sub-figure (\ref{fig:cnots:b}) a similar trend was observed, where increasing the number of frozen qubits directly correlates to a lower circuit depth, compared to the original circuit the method was used on.
 \begin{figure}[H]
     \centering 
     \subfloat[\label{fig:cnots:a}]{\includegraphics[width=0.49\linewidth]{Results/Results_CNOT.png}}
     \hfill
     \subfloat[\label{fig:cnots:b}]{\includegraphics[width=0.49\linewidth]{Results/Results_CDepth.png}}
-    \caption{\label{fig:cnots}Comparison of the impact of FrozenQubits on power-law Barabasi-Albert graphs~\cite{barabasi} on the Number of CNOTs in circuit and the Circuit depth in relation the number of qubits in the circuit}
+    \caption{\label{fig:cnots}Impact of FrozenQubits on power-law Barabasi-Albert graphs~\cite{barabasi} in relation to the Number of CNOTs in the circuit and the circuit depth in relation the number of qubits in the circuit}
 \end{figure}
-Furthermore FrozenQubits~\cite{frozenqubits} showed an increase in compilation time of $10\%$ for $m=1$ compared to the baseline. However, due to the graph construction shortcuts discussed in \ref{overhead}, for $m\geq 3$ compilation time was even reduced, following a decrease in graph size for each frozen qubit. The overall trend can be observed in figure (\ref{fig:compilation}).
+Furthermore FrozenQubits showed an increase in compilation time of $10\%$ for $m=1$ compared to the baseline. However, due to the graph construction shortcuts discussed in \ref{overhead}, for $m\geq 3$ relative compilation time went below 1, due to the decreased graph size. The overall trend can be observed in figure (\ref{fig:compilation}).
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{Results/Results_Compilation.png}
@@ -306,13 +269,11 @@ Furthermore FrozenQubits~\cite{frozenqubits} showed an increase in compilation t
 %-------------------------------------------------------------------------------
 \section{Research}
 %-------------------------------------------------------------------------------
-In the following part we will present our own research building on FrozenQubits~\cite{frozenqubits} and how it affects quantum circuits with different topologies than power-law graphs, more specifically \emph{sparse} quantum circuits. Because the method proposed by the paper presents a great opportunity to increase fidelity in power-law graphs it is our goal to generalize this method, to see how useful it might be in more diverse problems. If it would be generally applicable, this would mean that every program could be run at higher fidelity at the cost of more quantum processing. This could be beneficial for many applications requiring a higher degree of resolution in their results not yet reachable/hard to obtain with current systems. We used the number of CNOTs for measuring the impact of FrozenQubits, as they have a large impact on the error rate in circuits and are an easy metric to simulate. An empirical verification of our results in \ref{research:analysis} on real hardware systems is pending.
+In the following part we will present our own research building on FrozenQubits and how it affects quantum circuits with different topologies than power-law graphs, more specifically \emph{sparse} quantum circuits. Because the method proposed by the paper presents a great opportunity to increase fidelity in power-law graphs it is our goal to generalize this method, to see how useful it might be in more diverse problems. If it would be generally applicable, this would mean that every program could be run at higher fidelity at the cost of more quantum processing. This could be beneficial for many applications requiring a higher degree of resolution in their results not yet reachable/hard to obtain with current systems. We used the number of CNOTs for measuring the impact of FrozenQubits, as they have a large impact on the error rate in circuits and are an easy metric to simulate. An empirical verification of our results in \ref{research:analysis} on real hardware systems is pending.
 %-------------------------------------------------------------------------------
-\subsection{Sparse circuits}
+\subsection{Sparse quantum circuits}
 %-------------------------------------------------------------------------------
-For now we will define, what kind of quantum circuits we tested FrozenQubits~\cite{frozenqubits} on. Sparse circuits in this case refers to quantum circuits, in which each qubit is only connected to few other nodes. Because the method presented in the paper was mainly tested on power-law graphs like Barabasi-Albert graphs~\cite{barabasi} this is meant to determine the limit of the benefit in fidelity promised by FrozenQubits~\cite{frozenqubits}.\\
-Similar to the original work, we will generalize potential real-world problem graphs using three main types of topologies. 
-Examples for the different types of graphs we tested the algorithm on can be seen in figure (\ref{fig:graph_types}) below. Firstly in (\ref{fig:graph_types_regular}) we also tested $2$-regular graphs, as the original paper only covered $3$-regular graphs. And finally an example for randomly generated connected graph (RGCG$_e$)~\cite{RGCG} as in (\ref{fig:graph_types_random}), which are generated with a given edge count $e$. 
+For now we will define, what kind of quantum circuits we tested FrozenQubits on. Sparse quantum circuits in this case refers to circuits, in which each qubit is only connected to few other nodes. Because the method presented in the paper was mainly tested on power-law graphs like Barabasi-Albert graphs~\cite{barabasi} this is meant to determine the limit of the benefit in fidelity promised by FrozenQubits. Similar to the original work, we will generalize potential real-world problem graphs using two types of topologies. Examples for the types of graphs we used FrozenQubits on can be seen in figure (\ref{fig:graph_types}) below. Firstly in (\ref{fig:graph_types_regular}) we tested $2$-regular graphs, as the original paper only covered $3$-regular graphs. Additionally an example for randomly generated connected graph (RGCG$_e$)~\cite{RGCG} can be seen below (\ref{fig:graph_types_random}), which were generated with a given edge count $e$ and used to more closely resemble real world examples of sparse circuits. 
 \begin{figure}[H]
     \centering
 \subfloat[\label{fig:graph_types_regular}]{
@@ -355,13 +316,13 @@ Examples for the different types of graphs we tested the algorithm on can be see
         (4) edge node {} (5);
     \end{tikzpicture}
 }
-    \caption{Sparse graph types the following research is based upon. These include $2$-regular graphs (\ref{fig:graph_types_regular}) and randomly generated connected graphs (\ref{fig:graph_types_random}) (RGCG$_{e=5}$)}
+    \caption{Sparse graph types the following research is based upon. These include $2$-regular graphs (\ref{fig:graph_types_regular}) and randomly generated connected graphs (\ref{fig:graph_types_random}) (RGCG$_e$ with $e=5$ here)}
     \label{fig:graph_types}
 \end{figure}
 %-------------------------------------------------------------------------------
 \subsection{Analysis}\label{research:analysis}
 %-------------------------------------------------------------------------------
-We applied FrozenQubits on different types of graphs that were not mentioned in the paper such as 2-regular graphs and randomly generated connected graphs (RGCG\textsubscript{e})~\cite{RGCG} as shown in figure (\ref{fig:graph_types}). Similar to the previous work in FrozenQubits~\cite{frozenqubits}, in order to be able to study those graphs, we used $J_{i,j}\in \{-1,+1\}$ and $\forall i.h_i=0$ and then applied FrozenQubits on them and studied how the number of CNOTs in the resulting graphs responded. The number of CNOTs in the circuits directly corresponded with the number of edges in each graph, with a factor of $\#CNOTs=2\times \#edges$. The data for the graphs shown in the following sections was generated using the code in this \href{https://github.com/leoschultheiss/FrozenQubitsImplementation}{repository}.
+We applied FrozenQubits on different types of graphs that were not mentioned in the paper such as 2-regular graphs and randomly generated connected graphs (RGCG\textsubscript{e}) as shown in figure (\ref{fig:graph_types}). Similar to the previous work in FrozenQubits, in order to be able to study those graphs, we used $J_{i,j}\in \{-1,+1\}$ and $\forall i.h_i=0$ and then applied FrozenQubits on them and studied how the number of CNOTs in the resulting graphs responded. The number of CNOTs in the circuits directly corresponded with the number of edges in each graph, with a factor of $\#CNOTs=2\times \#edges$. The data for the graphs shown in the following sections was generated using the code in this \href{https://github.com/leoschultheiss/FrozenQubitsImplementation}{repository}.
 %    - how much would asymmetry of resulting circuits impact the method? (maybe some types of problems will also by symmetric)
 %    - disconnected qubits might not be that uncommon (measure?) -> symmetry  restored partially\\
 %-------------------------------------------------------------------------------
@@ -597,7 +558,7 @@ So overall FrozenQubits can still lead to an improvement in fidelity in less den
 %-------------------------------------------------------------------------------
 \section{Conclusion}
 %-------------------------------------------------------------------------------
-FrozenQubits was introduced as an application-level software framework to improve the fidelity of Quantum Approximation Optimization Algorithm (QAOA), it works by freezing a qubit or more by substituting the two possibilities in the problem, which partitions the state-space of the problem into smaller sub-spaces. multiple strategies were developed to subside the problem of running the newly created sub-problems individually, such as using the symmetry of the created sub-circuits. In this paper we discussed the impact of FrozenQubits on sparser circuits with lower average connectivity degrees than the ones discussed in the original paper. We discussed the impact of FrozenQubits on sparser circuits on the number of CNOTs. Overall the method produces significantly worse results than with power-law type graphs leading to minor improvements in fidelity at the cost of computational overhead. 
+FrozenQubits was introduced as an application-level software framework to improve the fidelity of Quantum Approximation Optimization Algorithm (QAOA), it works by freezing a qubit or more by substituting the two possibilities in the problem, which partitions the state-space of the problem into smaller sub-spaces. multiple strategies were developed to subside the problem of running the newly created sub-problems individually, such as using the symmetry of the created sub-circuits. In this paper we discussed the impact of FrozenQubits on sparser circuits with lower average connectivity degrees than the ones discussed in the original paper. We discussed the impact of FrozenQubits on sparser circuits on the number of CNOTs. Overall the method produces significantly worse results with sparse graphs than with power-law type graphs leading to minor improvements in fidelity at the cost of significant computational overhead. 
 %-------------------------------------------------------------------------------
 \bibliographystyle{plain}
 \bibliography{\jobname}
